@@ -11,3 +11,13 @@ puts "----------"
 
 @total_revenue = Store.sum(:annual_revenue)
 puts @total_revenue
+
+@stores = Store.all
+@stores.each{
+    |store|
+        puts "#{store.name} : #{store.annual_revenue}"
+}
+
+@rich_stores = Store.where("annual_revenue > ?", 1000000).count
+
+puts @rich_stores

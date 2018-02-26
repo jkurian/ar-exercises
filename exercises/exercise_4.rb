@@ -34,14 +34,14 @@ Store.create([
     }
 ])
 
-@mens_stores = Store.all.where(mens_apparel: true)
+@mens_stores = Store.where(mens_apparel: true)
 
 @mens_stores.each{
     |store|
         puts "#{store.name} : #{store.annual_revenue}"
 }
 
-@poor_womens_stores = Store.all.where("annual_revenue < ?", 1000000).where(womens_apparel: true)
+@poor_womens_stores = Store.where("annual_revenue < ?", 1000000).where(womens_apparel: true)
 
 @poor_womens_stores.each{
     |store|
