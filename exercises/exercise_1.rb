@@ -25,5 +25,7 @@ Store.create([
     }
 ])
 
+puts Store.count
+
 
 
