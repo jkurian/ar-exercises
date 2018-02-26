@@ -14,4 +14,15 @@ class Store < ActiveRecord::Base
     validates :name, length: { minimum: 3 }
     validates_numericality_of :annual_revenue, :only_integer => true, :greater_than_or_equal_to => 0
     validates_with ValidateApparel
+    before_destroy :check_for_employees
+
+private
+
+  def check_for_employees
+    if(Employee.where(store_id: self.id).count == 0)
+        return true
+    end
+    errors[:base] << "cannot be destroyed because store has employees"
+    false
+  end
 end
